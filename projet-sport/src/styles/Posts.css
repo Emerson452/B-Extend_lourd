@@ -1,0 +1,72 @@
+.shopping-list {
+display: flex;
+justify-content: space-between;
+gap: 0;
+
+}
+
+.article{
+display: flex;
+flex-wrap: wrap;
+width: 100%;
+justify-content: center;
+}
+
+.panier{
+  background-color: rgba(255, 164, 6, 0.655);
+  width: 400px;
+  height: 60vh;
+  position: sticky;
+  top: 0;
+}
+.post {
+  width: 400px;
+  height: 300px;
+  margin: 20px;
+  border-radius: 10px;
+  display: flex;
+  margin: 10;
+  flex-direction: column;
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.post:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+}
+.post .title {
+  flex: 20%;
+  border-bottom: 1px solid lightgray;
+  background-color: rgb(255, 145, 0);
+  display: grid;
+  place-content: center;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid black;
+}
+
+.post .body {
+  flex: 60%;
+  display: grid;
+  place-content: center;
+}
+
+.stock{
+  background-color:rgb(206, 206, 206);
+  width: auto;
+  text-align: end;
+  padding-right: 15px;
+}
+
+.post .price {
+  flex: 20%;
+  border-top: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  text-align: end;
+  padding-left: 15px;
+  background-color:rgb(164, 164, 164);
+  color: white;
+  border-radius: 0 0 10px 10px;
+}

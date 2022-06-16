@@ -1,0 +1,27 @@
+
+module.exports = (sequelize, DataTypes) => {
+
+    // variable pour représenter notre modèle
+    const images = sequelize.define("images", {
+        //définir les types
+        nom:{
+            type: DataTypes.VARCHAR(100), // chaîne de charactère 
+            allowNull: false, //titre obligatoir 
+        },
+        taille:{
+            type: DataTypes.int,
+            allowNull: false,
+        },
+        type:{
+            type: DataTypes.VARCHAR(20),
+            allowNull: false, 
+        },
+        bin:{
+            type: DataTypes.LONGBLOB,
+            allowNull: false,
+        },
+    })
+
+    //renvoyer cet objet
+    return images;
+}

@@ -1,0 +1,27 @@
+.lmj-footer {
+	color: rgb(255, 255, 255);
+	background-color: rgb(43, 43, 43);
+	border-top: solid 3px rgb(0, 0, 0);
+	align-items: center;
+	text-align: center;
+	font-weight: 500;
+	bottom: 0;
+	position:absolute;
+	width: 100%;
+}
+
+.container-footer{
+	padding: 10px;
+	background-color: rgb(255, 149, 0);
+}
+
+.lmj-footer-elem {
+	margin-bottom: 10px;
+}
+
+.copyright
+{
+	background-color: black;
+	height: 50px;
+	width: 100%;
+}

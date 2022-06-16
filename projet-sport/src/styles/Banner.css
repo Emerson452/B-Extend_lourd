@@ -1,0 +1,35 @@
+.lmj-banner {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 149, 0);
+	padding: 32px;
+	padding-right: 70px;
+	border-bottom: solid 3px black;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+	font-weight: bold;
+	font-size: large;
+}
+
+.lmj-logo {
+	height: 140px;
+	width: 200px;
+}
+
+.profil > *{
+padding-right: 30px;
+}
+
+.user-logo, .panier-logo{
+	width: 40px;
+}
+
+.lmj-banner > ul
+{
+	list-style-type: none;
+	display: flex;
+	justify-content: space-evenly;
+	width: 50%;
+}
+
