@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'//crochet d'utilisation des paramètre
 import axios from 'axios'
 import '../styles/ZoomPost.css';
 
+
 function Post() { 
     let { id } = useParams();//obtenir la valeur que nous passons dans nos paramètres
 
@@ -13,7 +14,14 @@ function Post() {
         axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {//ce que nous faisons après avoir reçu les données
           //comment afficher les données
           setPostObject(response.data);
-        });
+        },
+
+        // {
+        // headers: {
+        //   accessToken: localStorage.getItem("accessToken"),
+        // }}
+        
+        );
     });
   return (
   <div className='postPage'>
@@ -26,7 +34,7 @@ function Post() {
       <div className='pricePost'>{postObject.price}</div>
     </div>
     </div>
-  );
+  )
 }
 
 export default Post

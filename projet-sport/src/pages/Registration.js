@@ -28,7 +28,7 @@ function Registration() {
         });
     };
   return (
-    <div>
+    <div className='createPostPage'>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}> 
             <Form className='formContainer'>
                 <label>Surname: </label>

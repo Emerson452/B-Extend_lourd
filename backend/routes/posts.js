@@ -2,6 +2,7 @@ const { application } = require("express");
 const express = require(`express`)// express a un système de routage déjà implémenté
 const router = express.Router()
 const { posts } = require(`../models`);// destructure de la variable post
+const { validateToken } = require ('../middewares/AuthMiddleware');
 
 router.get("/", async (req, res) => {
     const listOfPosts = await posts.findAll();
@@ -9,7 +10,7 @@ router.get("/", async (req, res) => {
 });
 
 //cette route est celle qu'on intéroge by id
-router.get("/byId/:id", async (req, res) => {
+router.get("/byId/:id", validateToken, async (req, res) => {
 //création de la route afin d'obtenir l'id
     const id = req.params.id;
     const post = await posts.findByPk(id);//objet contenant le msg spécifique que nous voulons

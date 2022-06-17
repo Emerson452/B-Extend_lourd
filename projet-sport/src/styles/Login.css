@@ -1,0 +1,11 @@
+.Loginform{
+    height: auto;
+    padding: 50px;
+    margin: 370px 800px;
+    border: solid orange;
+    text-align: center;
+}
+
+.Loginform > input{
+    margin: 0 5%;
+}

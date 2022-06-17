@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import axios from "axios";
+import { AuthContext} from "../helpers/AuthContext"
+import { useNavigate} from "react-router-dom";
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const{setAuthState} = useContext(AuthContext);
 
     const login = () => {
         const data = {email: email, password: password};
@@ -13,12 +16,14 @@ function Login() {
                 alert(response.data.error);
             } else {
                 //Si il n'y a pas d'erreur 
-            sessionStorage.setItem("accessToken", response.data);
+            localStorage.setItem("accessToken", response.data);
+            setAuthState(true);
+            useNavigate.push("/");
             }
         }); //req à notre route de connextion
     };
   return (
-    <div>
+    <div className='Loginform'>
         <input 
         type="text" 
         onChange={(event) =>{

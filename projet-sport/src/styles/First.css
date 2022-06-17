@@ -1,0 +1,7 @@
+.container_first{
+    height: auto;
+    width: auto;
+    background-image: url("../assets/bk1.jpg");
+    height: 67vh;
+    background-size: cover;
+}

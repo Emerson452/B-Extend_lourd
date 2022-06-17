@@ -4,6 +4,7 @@ const router = express.Router()
 const { Users } = require(`../models`);// destructure de la variable post
 const bcrypt = require("bcrypt");
 const { sign } = require('jsonwebtoken'); //création de token
+const { validateToken } = require('../middewares/AuthMiddleware');
 
 
 //REGISTER
@@ -39,5 +40,11 @@ router.post('/login', async (req, res) => {
         res.json(accessToken);
     })
 });
+
+//verif si il y un token valide ou non
+router.get('/auth', validateToken, (req, res) => {
+    res.json(req.user)
+})
+
 //ensuite juste besoin de moduler le routeur d'exportation de points pour y avoir accès dans l'index.js
 module.exports = router;
