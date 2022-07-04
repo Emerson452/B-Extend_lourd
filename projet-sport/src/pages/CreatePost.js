@@ -1,12 +1,16 @@
 import '../styles/Createpost.css';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import {Formik, Form, Field, ErrorMessage} from "formik"; // permet de créer des formulaires sans utiliser les balises html traditionnelles
 import * as Yup from "yup"; // validation de formulaire (ex: une maj dans le mdp etc..)
 import axios from "axios"; //req  get request in createpost
 import { useNavigate } from 'react-router-dom'; // hook d'history
+import { AuthContext } from "../helpers/AuthContext";
 
 
 function CreatePost() {
+    const { authState } = useContext(AuthContext);
+
+
     const navigate = useNavigate(); // define history pour redirection
     const initialValues = {
         title: "",
@@ -15,6 +19,11 @@ function CreatePost() {
         price: "",
     };
 
+    useEffect(() =>{
+        if (!authState.status) {
+            navigate("/login");
+        }
+    }, []); // crochet car sinon il fonctionnera à l'infini
     const validationSchema = Yup.object().shape({
         title: Yup.string().required(),
         description: Yup.string().required(),

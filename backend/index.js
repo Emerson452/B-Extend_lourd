@@ -14,6 +14,7 @@ app.use("/posts", postRouter);
 const usersRouter = require("./routes/Users")
 app.use("/auth", usersRouter);
 
+
 //lorsque nous démarrons note api = parcourir les tables unique dans le dos modèles et verif si ils éxistent dans la bdd
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {

@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function Panier(){
+
     return(
-        <div></div>
+        <div className='postPage'>
+aa
+        </div>
     )
 }
 

@@ -16,61 +16,98 @@ import CreatePost from './pages/CreatePost';
 import ZoomPost from './pages/ZoomPost';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
+import Profil from './pages/Profil';
 import Footer from './components/footer';
 import { AuthContext} from "./helpers/AuthContext";
 import {useState, useEffect} from "react";
 import axios from "axios";
 
 function App() {
-const [authState, setAuthState] = useState(false); //le fait que nous sommes connecté ou non est basée sur cet état(authState)
+  const [authState, setAuthState] = useState({
+    surname: "",
+    email: "",
+    id: 0,
+    status: false,
+  }); //le fait que nous sommes connecté ou non est basée sur cet état(authState)
 
-useEffect (() => {
-  // if (localStorage.getItem('accessToken')){ //peut être facilement trucké en mettant un token aléatoire donc nous faisont une req avec axios
-  //   setAuthState(true);
-  // }
-  axios.get('http://localhost:3001/auth/auth', {
-    headers:{
-     accessToken: localStorage.getItem("accessToken"),
-  },
-}).then((response) =>{
-    if (response.data.error){
-      setAuthState(false);
-    } else {
-      setAuthState(true);
+  const[user, setUser] = useState({
+    email:"",
+    surname:"",
+    admin:false,
+  })
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/auth/auth`, {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        if (response.data.error) {
+          
+          console.log("erreur accesstoken")
+          setAuthState({ ...authState, status: false });
+        } else {
+          setAuthState({
+            surname: response.data.surname,
+            email: response.data.email,
+            id: response.data.id,
+            status: true,
+          });
+
+          const id = response.data.id;
+          axios
+          .get(`http://localhost:3001/auth/byId/${id}`)
+            .then((response) => {
+              console.log("erreur by id ")
+              if (response.data.error) {
+                setUser({ ...user, admin: false });
+        } else {
+          localStorage.setItem("admin", response.data.admin);
+          setUser({
+            email: response.data.email,
+            admin: response.data.admin
+          });
+        }
+      });
     }
   });
-}, []);
+  }, []);
 
 //Déconnexion
 const logout = () => {
-	localStorage.removeItem("accessToken");
-	setAuthState(false);
+  localStorage.removeItem("accessToken");
+  setAuthState({ surname: "", id: 0, status: false });
 };
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState}}>
       <Router>
       <div className='lmj-banner'>
+
 		<img src={logo} alt='logo-b-extend' className='lmj-logo' />
 		<ul>
-    <Link to="/first">ACCUEIL</Link>
+      <Link to="/first">ACCUEIL</Link>
 			<Link to="/">LOCATION</Link>
       <Link to="/panier">PANIER</Link>
       <Link to="/createpost">CRÉER UNE LOCATION</Link>
+
       <Link to="/gestion">GESTION</Link>
-			{!authState ? ( //nous demandons si le state est égal à false (non connexté)
+			{!authState.status && ( //nous demandons si le state est égal à false (non connexté)
 				<>
 			<Link to="/login">CONNEXION</Link>
 			<Link to="/registration">INSCRIPTION</Link>
 				</>
-			):(
-				<button onClick={logout}>DECONNEXION</button>
-			 
-			)
-			}
+			)}
+      <div className="loggedInContainer">
+        {authState.status && <button onClick={logout}>DECONNEXION</button>}			
+      </div> 
 		</ul>
 		<div className='profil'>
-		<Link to="/profil"><img src={user} alt='profil' className='user-logo' /></Link>
+    <h1>{authState.surname}</h1>
+
+		<Link to="/profil/"><img src={user} alt='profil' className='user-logo' /></Link>
 		<Link to="/panier"><img src={panier} alt='profil' className='panier-logo' /></Link>
 		</div>
 	</div>
@@ -82,6 +119,7 @@ const logout = () => {
           <Route path="/post/:id" exact element={<ZoomPost />} />
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/profil/:id" exact element={<Profil />} />
         </Routes>
       </Router>
       

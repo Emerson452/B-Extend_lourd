@@ -9,8 +9,9 @@ router.get("/", async (req, res) => {
     res.json(listOfPosts);
 });
 
+//, validateToken mettre une cond 
 //cette route est celle qu'on intéroge by id
-router.get("/byId/:id", validateToken, async (req, res) => {
+router.get("/byId/:id", async (req, res) => {
 //création de la route afin d'obtenir l'id
     const id = req.params.id;
     const post = await posts.findByPk(id);//objet contenant le msg spécifique que nous voulons
@@ -23,5 +24,17 @@ router.post("/", async (req, res) => { // faire en sorte que tout soit asynchron
     await posts.create(post); // insère des données dans notre bdd
     res.json(post);
 });
+
+router.delete("/:postId", async (req, res) => {
+    const postId = req.params.postId
+
+    await posts.destroy({
+        where: {
+            id: postId
+        },
+    });
+    res.json("Suppression du post")
+});
+
 //ensuite juste besoin de moduler le routeur d'exportation de points pour y avoir accès dans l'index.js
 module.exports = router;

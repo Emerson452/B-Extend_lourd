@@ -4,10 +4,11 @@ import { AuthContext} from "../helpers/AuthContext"
 import { useNavigate} from "react-router-dom";
 
 function Login() {
-
-    const [email, setEmail] = useState("");
+    
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
     const{setAuthState} = useContext(AuthContext);
+    let navigate = useNavigate();
 
     const login = () => {
         const data = {email: email, password: password};
@@ -16,9 +17,26 @@ function Login() {
                 alert(response.data.error);
             } else {
                 //Si il n'y a pas d'erreur 
-            localStorage.setItem("accessToken", response.data);
-            setAuthState(true);
-            useNavigate.push("/");
+            localStorage.setItem("accessToken", response.data.token);
+            setAuthState({
+                email: response.data.email,
+                id: response.data.id,
+                status: true,
+            });
+            const id = response.data.id;
+            axios.get(`http://localhost:3001/auth/byId/${id}`).then((response) => {
+                if (response.data.error){
+                    alert(response.data.error);
+                } else {
+                    localStorage.setItem("admin", response.data.admin);
+                    setAuthState({
+                        email: response.data.email,
+                        admin: response.data.admin,
+                    });
+                }
+            })
+            navigate("/");
+            window.location.reload();
             }
         }); //req à notre route de connextion
     };
