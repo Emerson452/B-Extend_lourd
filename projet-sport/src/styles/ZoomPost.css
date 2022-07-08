@@ -1,42 +1,58 @@
 .postPage{
-background-color: red;
+background-color: rgb(221, 221, 221);
 display: flex;
 height: auto;
 width: 80%;
-max-width: 1600px;
-min-width: 500px;
 margin: 4rem auto;
 }
 
 /**Left**/
 .leftSide{
-    background-color: rgb(149, 149, 193);
+    background-image: url("../assets/ball.png");
     width: 50%;
-    
+    margin: 30px 0;
+    border: solid 2px rgb(255, 149, 0);
+    border-right: none;
 }
 
-.titlePost
-{
-    background-color: rgb(193, 125, 193);
-}
-
-.descriptionPost
-{
-    background-color: rgb(164, 76, 76);
-}
-
-/**Right**/
 .rightSide{
-    background-color: rgb(146, 203, 136);
+    background-color: rgb(173, 173, 173);
     width: 50%;
+    height: 300px;
+    border: solid 2px rgb(255, 149, 0);
 }
 
-.stockPost
-{
-    background-color: rgb(164, 164, 76);
+.rightSide > h2{
+    padding: 3%;
 }
 
-.pricePost
-{
-    background-color: rgb(96, 221, 47);
+.rightSide > h4{
+    padding-left: 3%;
+}
+
+.infoPost{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.infoPost > p{
+    padding: 0 20px;
+}
+
+.btnPost{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btnPost > button{
+    background-color: rgb(255, 149, 0);
+    padding: 10px;
+    margin: 10px 20px;
+    width: 200px;
+}
+
+.btnModif{
+    background-color: rgb(195, 195, 195);
+    border: none;
+    margin-left: 20px;
 }

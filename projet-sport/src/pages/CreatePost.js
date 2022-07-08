@@ -42,21 +42,22 @@ function CreatePost() {
     <div className='createPostPage'>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}> 
             <Form className='formContainer'>
+            <h1>Créer une location</h1>
                 <label>Title: </label>
                 <ErrorMessage name="title" component="span"/>
                 <Field 
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="title" 
-                    placeholder="(Ex. ballon...)"
+                    placeholder="(Ex. Ballon...)"
                 /> 
-                <label>Image: </label>
+                <label>Description: </label>
                 <ErrorMessage name="description" component="span"/>
                 <Field 
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="description" 
-                    placeholder="(Ex. url.png...)"
+                    placeholder="(Ex. Taille...)"
                 /> 
                 {/* <input type="file" name='image'></input>
                 <input type="submit" name='valider' value="changer"/> */}

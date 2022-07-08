@@ -9,13 +9,13 @@ gap: 0;
 display: flex;
 flex-wrap: wrap;
 width: 100%;
-justify-content: center;
+justify-content: space-evenly;
 }
 
-.panier{
+.sponsor{
   background-color: rgba(255, 164, 6, 0.655);
-  width: 400px;
-  height: 60vh;
+  width: 200px;
+
   position: sticky;
   top: 0;
 }
@@ -50,6 +50,8 @@ justify-content: center;
   flex: 60%;
   display: grid;
   place-content: center;
+  background-image: url("../assets/ball.png");
+  background-size: 100%;
 }
 
 .stock{
@@ -69,4 +71,17 @@ justify-content: center;
   background-color:rgb(164, 164, 164);
   color: white;
   border-radius: 0 0 10px 10px;
+}
+
+.onchangeHome{
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  text-align: center;
+  width: 25px;
+  margin: 10px 20px;
+  margin-left: 420px;
+}
+
+.onchangeHome > p{
+  margin: 0;
 }

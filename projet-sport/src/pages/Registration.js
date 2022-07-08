@@ -31,6 +31,7 @@ function Registration() {
     <div className='createPostPage'>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}> 
             <Form className='formContainer'>
+            <h1>Inscription</h1>
                 <label>Surname: </label>
                 <ErrorMessage name="surname" component="span"/>
                 <Field 

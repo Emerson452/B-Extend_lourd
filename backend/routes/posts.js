@@ -25,6 +25,30 @@ router.post("/", async (req, res) => { // faire en sorte que tout soit asynchron
     res.json(post);
 });
 
+router.put("/title", async (req, res) => {
+    const { newTitle, id } = req.body;
+    await posts.update({ title: newTitle }, { where: { id: id } });
+    res.json(newTitle);
+  });
+
+router.put("/description", async (req, res) => {
+    const { newDescription, id } = req.body;
+    await posts.update({ description: newDescription }, { where: { id: id } });
+    res.json(newDescription);
+  });
+
+router.put("/price", async (req, res) => {
+    const { newPrice, id } = req.body;
+    await posts.update({ price: newPrice }, { where: { id: id } });
+    res.json(newPrice);
+  });
+
+router.put("/stock", async (req, res) => {
+    const { newStock, id } = req.body;
+    await posts.update({ stock: newStock }, { where: { id: id } });
+    res.json(newStock);
+  });
+
 router.delete("/:postId", async (req, res) => {
     const postId = req.params.postId
 

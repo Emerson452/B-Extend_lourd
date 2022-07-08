@@ -1,13 +1,17 @@
 //Banner
 import './styles/Banner.css'
 import logo from './assets/logo.png'
-import user from './assets/user.png'
 import panier from './assets/panier-blanc.png'
+import User from './assets/user.png'
 
 import "./styles/First.css";
 import "./styles/index.css";
 import "./styles/Posts.css";
 import "./styles/Login.css";
+import "./styles/Panier.css";
+import "./styles/PageNotFound.css";
+import "./styles/Profil.css";
+
 import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
 import Home from './pages/Home';
 import First from './pages/First';
@@ -17,6 +21,9 @@ import ZoomPost from './pages/ZoomPost';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Profil from './pages/Profil';
+import Gestion from './pages/Gestion';
+
+import PageNotFound from './pages/PageNotFound';
 import Footer from './components/footer';
 import { AuthContext} from "./helpers/AuthContext";
 import {useState, useEffect} from "react";
@@ -25,8 +32,11 @@ import axios from "axios";
 function App() {
   const [authState, setAuthState] = useState({
     surname: "",
+    name: "",
+    telephone: "",
     email: "",
     id: 0,
+    admin:false,
     status: false,
   }); //le fait que nous sommes connecté ou non est basée sur cet état(authState)
 
@@ -51,8 +61,11 @@ function App() {
         } else {
           setAuthState({
             surname: response.data.surname,
+            name: response.data.name,
+            telephone: response.data.telephone,
             email: response.data.email,
             id: response.data.id,
+            admin: response.data.admin,
             status: true,
           });
 
@@ -84,32 +97,35 @@ const logout = () => {
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState}}>
       <Router>
-      <div className='lmj-banner'>
+      <div className='banner'>
 
 		<img src={logo} alt='logo-b-extend' className='lmj-logo' />
 		<ul>
       <Link to="/first">ACCUEIL</Link>
 			<Link to="/">LOCATION</Link>
-      <Link to="/panier">PANIER</Link>
+      
+      {authState.admin === true &&
+      <>
       <Link to="/createpost">CRÉER UNE LOCATION</Link>
-
-      <Link to="/gestion">GESTION</Link>
+      {/* <Link to="/gestion">GESTION</Link> */}
+      </>
+      }
 			{!authState.status && ( //nous demandons si le state est égal à false (non connexté)
 				<>
 			<Link to="/login">CONNEXION</Link>
-			<Link to="/registration">INSCRIPTION</Link>
+			<Link to="/registration" >INSCRIPTION</Link>
 				</>
+        
 			)}
-      <div className="loggedInContainer">
-        {authState.status && <button onClick={logout}>DECONNEXION</button>}			
-      </div> 
+        {authState.status && <Link to="/" onClick={logout}>DECONNEXION</Link>}			
 		</ul>
 		<div className='profil'>
-    <h1>{authState.surname}</h1>
-
-		<Link to="/profil/"><img src={user} alt='profil' className='user-logo' /></Link>
+    <h3>Bonjour {authState.surname}</h3>
+    <div className='logoBanner'>
+		<Link to="/profil/${id}"><img src={User} alt='profil' className='user-logo' /></Link>
 		<Link to="/panier"><img src={panier} alt='profil' className='panier-logo' /></Link>
 		</div>
+    </div>
 	</div>
         <Routes>
           <Route path="/first" exact element={<First />} />
@@ -117,9 +133,11 @@ const logout = () => {
           <Route path="/panier" exact element={<Panier />} />
           <Route path="/createpost" exact element={<CreatePost />} />
           <Route path="/post/:id" exact element={<ZoomPost />} />
+          <Route path="/gestion" exact element={<Gestion />} />
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/profil/:id" exact element={<Profil />} />
+          <Route path="*" exact element={<PageNotFound />} />
         </Routes>
       </Router>
       

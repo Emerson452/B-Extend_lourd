@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
             email: email,
             password: hash,
         });
-        res.json("SUCCESS");
+        res.json(req.body);
     });
 });
 
@@ -37,10 +37,10 @@ router.post('/login', async (req, res) => {
         if (!match) res.json({ error: "Mauvais mot de passe ou nom d'utilisateur !"});
         //Génération du token
         const accessToken = sign(
-            {surname: user.surname, email: email, id: user.id}, 
+            {surname: user.surname, name: user.name, telephone:user.telephone, email: email, id: user.id, admin: user.admin}, 
             "importantesecret"
     );
-    res.json({token: accessToken, surname: user.surname, email: email, id: user.id, admin: user.admin});
+    res.json({token: accessToken, surname: user.surname, name: user.name, telephone:user.telephone, email: email, id: user.id, admin: user.admin});
 });
 });
 
@@ -54,16 +54,66 @@ router.get("/byId/:id", async (req, res) => {
 //verif si il y un token valide ou non
 router.get('/auth', validateToken, (req, res) => {
     res.json(req.user)
-    console.log(req.user)
 });
 
 //get req pour les info de l'utilisateur
 router.get("/information/:id", async (req, res) => { //grab l'id en tant que params / async car nous devons attendre certaines données 
     const id = req.params.id
 
-    const information = await Users.findByPk(id, {attributes: {exclude: ['password']}}); // passer une sorte d'attributs pour ne pas prendre le mdp
+    const information = await Users.findByPk(id); // passer une sorte d'attributs pour ne pas prendre le mdp
     res.json(information);
 });
+
+router.put("/surname", async (req, res) => {
+    const { newSurname, id } = req.body;
+    await Users.update({ surname: newSurname }, { where: { id: id } });
+    res.json(newSurname);
+  });
+  
+  router.put("/name", async (req, res) => {
+    const { newName, id } = req.body;
+    await Users.update({ name: newName }, { where: { id: id } });
+    res.json(newName);
+  });
+  
+  router.put("/telephone", async (req, res) => {
+    const { newTelehone, id } = req.body;
+    await Users.update({ telephone: newTelehone }, { where: { id: id } });
+    res.json(newTelehone);
+  });
+  
+  router.put("/email", async (req, res) => {
+    const { newEmail, id } = req.body;
+    await Users.update({ email: newEmail }, { where: { id: id } });
+    res.json(newEmail);
+});
+
+router.delete("/:authId", async (req, res) => {
+    const authId = req.params.authId
+
+    await Users.destroy({
+        where: {
+            id: authId
+        },
+    });
+    res.json("Suppression du post")
+});
+// router.put("/changepassword", validateToken, async (req, res) => {
+//     const { oldPassword, newPassword } = req.body;
+//     const user = await Users.findOne({ where: { username: req.user.username } });
+  
+//     bcrypt.compare(oldPassword, user.password).then(async (match) => {
+//       if (!match) res.json({ error: "Wrong Password Entered!" });
+  
+//       bcrypt.hash(newPassword, 10).then((hash) => {
+//         Users.update(
+//           { password: hash },
+//           { where: { username: req.user.username } }
+//         );
+//         res.json("SUCCESS");
+//       });
+//     });
+//   });
 
 //ensuite juste besoin de moduler le routeur d'exportation de points pour y avoir accès dans l'index.js
 module.exports = router;

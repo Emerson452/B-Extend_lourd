@@ -42,6 +42,7 @@ function Login() {
     };
   return (
     <div className='Loginform'>
+        <h1>Login</h1>
         <input 
         type="text" 
         onChange={(event) =>{

@@ -1,48 +1,70 @@
-.lmj-banner {
-	color: rgb(0, 0, 0);
+.banner {
 	background-color: rgb(255, 149, 0);
-	padding: 32px;
-	padding-right: 70px;
-	border-bottom: solid 3px black;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: row;
-	align-items: center;
-	font-weight: bold;
-	font-size: large;
+
 }
+	
+.banner > ul{
+	height: 10%;
+	padding-top: 3%;
+}
+
+.banner > ul > a{
+	text-decoration: none;
+	padding: 10px;
+	color: black;
+	font-weight: bold;
+
+}
+@media screen and (min-width:800px) {
+	.banner {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+@media screen and (max-width:800px) {
+	.banner {
+		align-items: center;
+		text-align: center;
+		
+	}
+	.banner > .lmj-logo{
+		height: 100px;
+		width: 140px;
+	}
+	.banner > ul{
+		padding: 0;
+		margin: 0;
+		word-wrap:break-word;
+	}
+
+	.banner > ul>a{
+		width: 10%;
+		align-items: center;
+		text-align: center;
+	}
+}
+
 
 .lmj-logo {
-	height: 140px;
-	width: 200px;
+	height: 8%;
+	width: 12%;
+
 }
 
-.profil > *{
-padding-right: 30px;
+.profil{
+	padding-right: 20px;
+	padding-top: 20px;
 }
 
+.profil > .logoBanner{
+	display: flex;
+	justify-content: space-evenly;
+}
 .user-logo, .panier-logo{
 	width: 40px;
 }
 
-.lmj-banner > ul
-{
-	list-style-type: none;
-	display: flex;
-	justify-content: space-evenly;
-	width: auto;
-}
-
-
-.lmj-banner > ul > a{
-	color: black;
-	text-decoration: none;
-	margin: 10px;
-}
-
-.lmj-banner > ul > button{
-	width: 200px;
-	height: 50px;
-	color: red;
-	cursor: pointer;
+.profil > h1{
+	color: rgb(149, 149, 149);
 }
