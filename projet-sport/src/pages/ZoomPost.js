@@ -6,7 +6,7 @@ import { AuthContext } from "../helpers/AuthContext";
 
 
 
-function Post() { 
+function ZoomPost() { 
     let { id } = useParams();//obtenir la valeur que nous passons dans nos paramètres
     let navigate = useNavigate();
     const { authState } = useContext(AuthContext);
@@ -145,4 +145,4 @@ function Post() {
 }
 
 
-export default Post
+export default ZoomPost

@@ -3,6 +3,7 @@ import axios from "axios"; //req  get request in Home
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // hook d'history
 import "../styles/ShoppingList.css";
+import Ball from "../assets/ballon.png"
 
 function Home({ cart, updateCart }) {
   const [listOfPosts, setListOfPosts] = useState([]);
@@ -66,6 +67,7 @@ function Home({ cart, updateCart }) {
 
           return (
             <div className="post" key={key}>
+
               <div className="title"> {value.title} </div>
               <div className="body"> {value.description} </div>
               <div className="stock"> Plus que {value.stock} ! </div>

@@ -11,6 +11,7 @@ import "./styles/Login.css";
 import "./styles/Panier.css";
 import "./styles/PageNotFound.css";
 import "./styles/Profil.css";
+import "./styles/Gestion.css";
 
 import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
 import Home from './pages/Home';
@@ -18,6 +19,7 @@ import First from './pages/First';
 import Panier from './pages/Panier';
 import CreatePost from './pages/CreatePost';
 import ZoomPost from './pages/ZoomPost';
+import ZoomUser from './pages/ZoomUser';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Profil from './pages/Profil';
@@ -73,11 +75,11 @@ function App() {
           axios
           .get(`http://localhost:3001/auth/byId/${id}`)
             .then((response) => {
-              console.log("erreur by id ")
+              console.log("erreur by id ");
               if (response.data.error) {
                 setUser({ ...user, admin: false });
         } else {
-          localStorage.setItem("admin", response.data.admin);
+          // localStorage.setItem("admin", response.data.admin);
           setUser({
             email: response.data.email,
             admin: response.data.admin
@@ -107,7 +109,7 @@ const logout = () => {
       {authState.admin === true &&
       <>
       <Link to="/createpost">CRÉER UNE LOCATION</Link>
-      {/* <Link to="/gestion">GESTION</Link> */}
+      <Link to="/gestion">GESTION</Link>
       </>
       }
 			{!authState.status && ( //nous demandons si le state est égal à false (non connexté)
@@ -133,6 +135,8 @@ const logout = () => {
           <Route path="/panier" exact element={<Panier />} />
           <Route path="/createpost" exact element={<CreatePost />} />
           <Route path="/post/:id" exact element={<ZoomPost />} />
+          <Route path="/auth/:id" exact element={<ZoomUser />} />
+
           <Route path="/gestion" exact element={<Gestion />} />
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/login" exact element={<Login />} />

@@ -6,7 +6,10 @@ const bcrypt = require("bcrypt");
 const { sign } = require('jsonwebtoken'); //création de token
 const { validateToken } = require('../middewares/AuthMiddleware');
 
-
+router.get("/", async (req, res) => {
+    const listOfUsers = await Users.findAll();
+    res.json(listOfUsers);
+});
 //REGISTER
 //Demande Post qui va insérer des éléments dans notre table users (registration)
 router.post("/", async (req, res) => {
@@ -47,9 +50,16 @@ router.post('/login', async (req, res) => {
 router.get("/byId/:id", async (req, res) => {
     //création de la route afin d'obtenir l'id
         const id = req.body.id;
-        const post = await Users.findByPk(id);//objet contenant le msg spécifique que nous voulons
-        res.json(post);
+        const user = await Users.findByPk(id);//objet contenant le msg spécifique que nous voulons
+        res.json(user);
     });
+
+    router.get("/byId/:id", async (req, res) => {
+        //création de la route afin d'obtenir l'id
+            const id = req.body.id;
+            const post = await Users.findByPk(id);//objet contenant le msg spécifique que nous voulons
+            res.json(post);
+        });
 
 //verif si il y un token valide ou non
 router.get('/auth', validateToken, (req, res) => {

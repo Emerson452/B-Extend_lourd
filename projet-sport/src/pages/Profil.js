@@ -8,14 +8,14 @@ function Profil() {
     let {id} = useParams(); // chaque req = récup id a partir des params dans le back (users)
     // const [surname, setSurname] = useState(""); // état contenant les infor sur le users
     const { authState } = useContext(AuthContext);
-    const [surname, setSurname] = useState({});
+    const [userObject, setUserObject] = useState({});
 
     let navigate = useNavigate();
 
     
     useEffect(() => { // il sera exécuter quand on ouvre la page ce qui lancera toutes les req pour construire la page
         axios.get(`http://localhost:3001/auth/information/${id}`).then((response) => {
-            setSurname(response.data);
+          setUserObject(response.data);
             console.log(authState);
         })
     }, []);
@@ -53,7 +53,7 @@ function Profil() {
             }
           );
   
-          setSurname({ ...surname, surname: newSurname });
+          setUserObject({ ...userObject, surname: newSurname });
         }
       }
       if (option === "name") {
@@ -70,7 +70,7 @@ function Profil() {
             }
           );
   
-          setSurname({ ...surname, name: newName });
+          setUserObject({ ...userObject, name: newName });
         }
       }
       if (option === "telephone") {
@@ -87,7 +87,7 @@ function Profil() {
             }
           );
   
-          setSurname({ ...surname, telephone: newTelehone });
+          setUserObject({ ...userObject, telephone: newTelehone });
         }
       }
       if (option === "email") {
@@ -104,7 +104,7 @@ function Profil() {
             }
           );
   
-          setSurname({ ...surname, email: newEmail });
+          setUserObject({ ...userObject, email: newEmail });
         }
       }
     };

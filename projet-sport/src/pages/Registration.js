@@ -2,8 +2,10 @@ import React from 'react'
 import {Formik, Form, Field, ErrorMessage} from "formik"; // permet de créer des formulaires sans utiliser les balises html traditionnelles
 import * as Yup from "yup"; // validation de formulaire (ex: une maj dans le mdp etc..)
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
+    let navigate = useNavigate();
 
     const initialValues = {
         admin: "false",
@@ -25,6 +27,7 @@ function Registration() {
     const onSubmit = (data) => {
         axios.post("http://localhost:3001/auth", data).then(() =>{
             console.log(data);
+            navigate("/");
         });
     };
   return (
