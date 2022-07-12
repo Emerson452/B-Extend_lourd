@@ -68,23 +68,31 @@ function Home({ cart, updateCart }) {
           return (
             <div className="post" key={key}>
 
-              <div className="title"> {value.title} </div>
-              <div className="body"> {value.description} </div>
-              <div className="stock"> Plus que {value.stock} ! </div>
-              <div className="price"> {value.price} €</div>
-              <div className="btnPost">
-                <button className="btnPost" onClick={() => {navigate(`/post/${value.id}`);}}>
-                  Détails
-                </button>
+               <div class="imgBx">
+               <img src={Ball} alt='logo-balle' className='img-ball-post' />
+              </div>
+              <div className="contentBx">
+                <h2>{value.title}</h2>
+                <div className="pricePost">
+                  <h3>{value.price} €</h3>
+              </div>
+              <div className="stockPost">
+                <h3>Plus que {value.stock} !</h3>
+              </div>
+                <div className="buttonPost">
+                  <button className="btnPost" onClick={() => {navigate(`/post/${value.id}`);}}>
+                    Détails
+                  </button>
 
-                <button type="submit" className="btnPost" onClick={addPanier}>
-                  Ajouter au panier
-                </button>
-              <div className="onchangeHome">
+                  <button type="submit" className="btnPost" onClick={addPanier}>
+                    Ajouter au panier
+                  </button>
+                </div>
+              </div>
+              <div className="selectionPost">
                 <p onChange={addPanier}>
                   {JSON.parse(localStorage.getItem(value.id))}
                 </p>
-              </div>
               </div>
             </div>
           );

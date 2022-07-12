@@ -49,7 +49,6 @@ function CreatePost() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="title" 
-                    placeholder="(Ex. Ballon...)"
                 /> 
                 <label>Description: </label>
                 <ErrorMessage name="description" component="span"/>
@@ -57,7 +56,6 @@ function CreatePost() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="description" 
-                    placeholder="(Ex. Taille...)"
                 /> 
                 {/* <input type="file" name='image'></input>
                 <input type="submit" name='valider' value="changer"/> */}
@@ -67,7 +65,6 @@ function CreatePost() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="stock" 
-                    placeholder="(Ex. 3...)"
                 /> 
                 <label>Price: </label>
                 <ErrorMessage name="price" component="span"/>
@@ -75,9 +72,8 @@ function CreatePost() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="price" 
-                    placeholder="(Ex. 25...)"
                 /> 
-                <button type="submit">Valider</button>
+                <button type="submit" >Valider</button>
             </Form>
         </Formik>
     </div>

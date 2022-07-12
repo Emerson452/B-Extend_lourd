@@ -41,7 +41,6 @@ function Registration() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="surname" 
-                    placeholder="(Ex. Lorem...)"
                 /> 
                 <label>Name: </label>
                 <ErrorMessage name="name" component="span"/>
@@ -49,7 +48,6 @@ function Registration() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="name" 
-                    placeholder="(Ex. Lorem...)"
                 /> 
                 <label>Telephone: </label>
                 <ErrorMessage name="telephone" component="span"/>
@@ -57,7 +55,6 @@ function Registration() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="telephone" 
-                    placeholder="+33"
                 /> 
                 <label>Email: </label>
                 <ErrorMessage name="email" component="span"/>
@@ -65,7 +62,6 @@ function Registration() {
                     autocomplete="off"
                     id="inputCreatePost" 
                     name="email" 
-                    placeholder="(Ex. lorem@gmail.com...)"
                 /> 
                  <label>Password: </label>
                 <ErrorMessage name="password" component="span"/>
@@ -74,7 +70,6 @@ function Registration() {
                     id="inputCreatePost" 
                     type="password"
                     name="password" 
-                    placeholder=""
                 />
                 <button type="submit">Inscription</button>
             </Form>

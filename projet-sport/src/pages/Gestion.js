@@ -42,8 +42,7 @@ function Gestion() {
               <div>{value.name}</div>
               <div>{value.telephone}</div>
               <div>{value.email}</div>
-              <button onClick={() => {navigate(`/auth/${value.id}`);}}>Détails</button>
-             
+              <button onClick={() => {navigate(`/auth/${value.id}`);}}>Détails</button>             
               </>
             ) : (
               <>

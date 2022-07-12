@@ -33,6 +33,8 @@ function Profil() {
       })
       
       .then(() =>{
+        window.location.reload();
+        localStorage.clear();
         navigate("/");
        alert("delete success") 
       });
@@ -119,8 +121,9 @@ function Profil() {
                 {" "}
                 <h2> Prénom: {authState.surname}<button className='btnModif' onClick={() => {editUser("surname")}}>Modifier prénom</button></h2>
                 <h2> Name: {authState.name}<button className='btnModif' onClick={() => {editUser("name")}}>Modifier nom</button></h2>
-                <h2> Email: {authState.email}<button className='btnModif' onClick={() => {editUser("email")}}>Modifier email</button></h2>
                 <h2> Telephone: {authState.telephone}<button className='btnModif' onClick={() => {editUser("telephone")}}>Modifier telephone</button></h2>
+                <h2> Email: {authState.email}<button className='btnModif' onClick={() => {editUser("email")}}>Modifier email</button></h2>
+                
 
                 {authState.admin ? (
                 <>
@@ -137,6 +140,8 @@ function Profil() {
                 {authState.status &&
                 <>
                 <div className='btnPost'>
+                <button onClick={() => {navigate(`/modifprofil/${id}`)}}>{""}Modifier</button>
+
                   <button onClick={() => {deleteUser(authState.id);}}>{""}Supprimer</button>
                 </div>
                 </>

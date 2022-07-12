@@ -41,95 +41,25 @@ function ZoomPost() {
       });
     };
 
-    const editPost = (option) => {
-      if (option === "title") {
-        let newTitle = prompt("Nouveau Titre: ");
-        if (newTitle) {
-          axios.put(
-            "http://localhost:3001/posts/title",
-            {
-              newTitle: newTitle,
-              id: id,
-            },
-            {
-              headers: { accessToken: sessionStorage.getItem("accessToken") },
-            }
-          );
-  
-          setPostObject({ ...postObject, title: newTitle });
-        }
-      }
-      if (option === "description") {
-        let newDescription = prompt("Nouvelle description: ");
-        if (newDescription) {
-          axios.put(
-            "http://localhost:3001/posts/description",
-            {
-              newDescription: newDescription,
-              id: id,
-            },
-            {
-              headers: { accessToken: sessionStorage.getItem("accessToken") },
-            }
-          );
-  
-          setPostObject({ ...postObject, description: newDescription });
-        }
-      }
-      if (option === "price") {
-        let newPrice = prompt("Nouveau prix: ");
-        if (newPrice) {
-          axios.put(
-            "http://localhost:3001/posts/price",
-            {
-              newPrice: newPrice,
-              id: id,
-            },
-            {
-              headers: { accessToken: sessionStorage.getItem("accessToken") },
-            }
-          );
-  
-          setPostObject({ ...postObject, price: newPrice });
-        }
-      }
-      if (option === "stock") {
-        let newStock = prompt("Nouveau stock: ");
-        if (newStock) {
-          axios.put(
-            "http://localhost:3001/posts/stock",
-            {
-              newStock: newStock,
-              id: id,
-            },
-            {
-              headers: { accessToken: sessionStorage.getItem("accessToken") },
-            }
-          );
-  
-          setPostObject({ ...postObject, stock: newStock });
-        }
-      }
-    };
   return (
   <div className='postPage'>
     <div className='leftSide'>
     </div>
     <div className='rightSide'>
-      <h2>{postObject.title}<button className='btnModif' onClick={() =>  {editPost("title")}}>Modifier titre.</button></h2>
+      <h2>{postObject.title}</h2>
 
-      <h4>{postObject.description}<button className='btnModif' onClick={() =>  {editPost("description")}}>Modifier description.</button></h4>
+      <h4>{postObject.description}</h4>
 
       <div className='infoPost'>
-        <p>Stock: {postObject.stock} !<button className='btnModif' onClick={() =>  {editPost("stock")}}>Modifier stock.</button></p>
+        <p>Stock: {postObject.stock} !</p>
 
-        <p>Prix: {postObject.price} €<button className='btnModif' onClick={() =>  {editPost("price")}}>Modifier prix.</button></p>
+        <p>Prix: {postObject.price} €</p>
 
       </div>
       {authState.admin === true && ( //nous demandons si le state est égal à false (non connexté)
 				<>
 		<div className='btnPost'>
-
+    <button onClick={() => {navigate(`/modifpost/${id}`)}}>{""}Modifier</button>
       <button onClick={() => {deletePost(postObject.id);}}>{""}Supprimer</button>
 
       </div>

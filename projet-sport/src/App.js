@@ -4,6 +4,7 @@ import logo from './assets/logo.png'
 import panier from './assets/panier-blanc.png'
 import User from './assets/user.png'
 
+
 import "./styles/First.css";
 import "./styles/index.css";
 import "./styles/Posts.css";
@@ -24,6 +25,8 @@ import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Profil from './pages/Profil';
 import Gestion from './pages/Gestion';
+import ModifPost from './pages/ModifPost';
+import ModifProfil from './pages/ModifProfil';
 
 import PageNotFound from './pages/PageNotFound';
 import Footer from './components/footer';
@@ -99,6 +102,7 @@ const logout = () => {
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState}}>
       <Router>
+        
       <div className='banner'>
 
 		<img src={logo} alt='logo-b-extend' className='lmj-logo' />
@@ -112,20 +116,25 @@ const logout = () => {
       <Link to="/gestion">GESTION</Link>
       </>
       }
-			{!authState.status && ( //nous demandons si le state est égal à false (non connexté)
+		</ul>
+
+		<div className='profil'>
+      <div className='nameProfil'>
+
+        {!authState.status && ( //nous demandons si le state est égal à false (non connexté)
 				<>
 			<Link to="/login">CONNEXION</Link>
 			<Link to="/registration" >INSCRIPTION</Link>
 				</>
         
 			)}
-        {authState.status && <Link to="/" onClick={logout}>DECONNEXION</Link>}			
-		</ul>
-		<div className='profil'>
-    <h3>Bonjour {authState.surname}</h3>
+        {authState.status && <Link to="/" onClick={logout}>DECONNEXION</Link>}	
+        <h4>| Bonjour {authState.surname}</h4>		
+      </div>
     <div className='logoBanner'>
+  
 		<Link to="/profil/${id}"><img src={User} alt='profil' className='user-logo' /></Link>
-		<Link to="/panier"><img src={panier} alt='profil' className='panier-logo' /></Link>
+		<Link to="/panier"><img src={panier} alt='profil' className='user-logo' /></Link>
 		</div>
     </div>
 	</div>
@@ -136,8 +145,9 @@ const logout = () => {
           <Route path="/createpost" exact element={<CreatePost />} />
           <Route path="/post/:id" exact element={<ZoomPost />} />
           <Route path="/auth/:id" exact element={<ZoomUser />} />
-
           <Route path="/gestion" exact element={<Gestion />} />
+          <Route path="/modifpost/:id" exact element={<ModifPost />} />
+          <Route path="/modifprofil/:id" exact element={<ModifProfil />} />
           <Route path="/registration" exact element={<Registration />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/profil/:id" exact element={<Profil />} />
