@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     })
-
+    
     //renvoyer cet objet
     return posts;
 }

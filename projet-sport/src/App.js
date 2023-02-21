@@ -14,7 +14,7 @@ import "./styles/PageNotFound.css";
 import "./styles/Profil.css";
 import "./styles/Gestion.css";
 
-import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
+import {HashRouter as Router, Route, Routes, Link} from "react-router-dom";
 import Home from './pages/Home';
 import First from './pages/First';
 import Panier from './pages/Panier';
