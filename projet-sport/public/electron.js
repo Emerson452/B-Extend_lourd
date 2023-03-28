@@ -17,8 +17,8 @@ function createWindow() {
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000' // URL de développement de React
-      : `file://${path.join(__dirname, '../build/index.html')}` // URL de production de React
-  );
+      : `file://${path.join(app.getAppPath(), 'build', 'index.html')}` // URL de production de React
+  );  
   mainWindow.on('closed', () => (mainWindow = null));
 }
 
