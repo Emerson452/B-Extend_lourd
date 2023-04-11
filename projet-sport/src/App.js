@@ -108,7 +108,7 @@ const logout = () => {
 		<img src={logo} alt='logo-b-extend' className='lmj-logo' />
 		<ul>
       <Link to="/first">ACCUEIL</Link>
-			<Link to="/">LOCATION</Link>
+			<Link to="/">ARTICLES</Link>
       
       {authState.admin === true &&
       <>
