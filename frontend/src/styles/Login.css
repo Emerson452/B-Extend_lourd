@@ -1,0 +1,40 @@
+.Loginform{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 10%;
+    padding: 1% 1%;
+    border: solid 3px rgb(255, 145, 0);
+}
+
+@media screen and (min-width:1000px) {
+    .Loginform{
+        margin: 2% 39%;
+    }
+}
+.Loginform > input{
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.Loginform > button{
+    margin-top: 15px;
+    height: 40px;
+    width: 250px;
+    border: none;
+    background-color: rgba(255, 145, 0, 0.646);
+    border-radius: 5px;
+    color: white;
+}
+
+.Loginform button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 145, 0);
+  }

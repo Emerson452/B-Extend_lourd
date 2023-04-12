@@ -1,0 +1,12 @@
+.lmj-shopping-list {
+	width: 100%;
+	min-height: 870px;
+}
+
+.lmj-ballon-list {
+	list-style-type: none;
+	padding: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}

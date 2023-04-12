@@ -1,0 +1,16 @@
+.errorContainer{
+    align-items: center;
+    text-align: center;
+}
+
+.errorContainer > h3{
+    text-align: center;
+}
+
+.errorContainer > h3 > a{
+    color: black;
+}
+
+.errorContainer > img{
+    width: 30%;
+}
